@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Easylife_Sorting>
+            <codePool>local</codePool>
+            <active>false</active>
+            <depends>
+                <Mage_Catalog />
+            </depends>
+        </Easylife_Sorting>
+    </modules>
+</config>

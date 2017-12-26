@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+	<default>
+		<reference name="head">
+	         <action method="addCss"><stylesheet>css/style1.css</stylesheet></action>
+	         <action method="addItem"><type>skin_js</type><name>js/jquery-1.8.3.js</name><params/></action> 
+	     </reference>
+		<reference name="content">
+           <block type="core/template" name="mygatewaydata" template="icreditgateway/icreditgateway.phtml" />
+		</reference>
+	</default>
+	
+</layout>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Easylife_Sorting>
+            <version>1.0.0</version>
+        </Easylife_Sorting>
+    </modules>
+    <global>
+        <models>
+            <catalog_resource>
+                <rewrite>
+                    <product_collection>Easylife_Sorting_Model_Resource_Product_Collection</product_collection>
+                </rewrite>
+            </catalog_resource>
+        </models>
+    </global>
+</config>

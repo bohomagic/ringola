@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Overcoming Magento's Full Page Cache
+ * http://www.pixafy.com/blog
+ *
+ * @category    Pixafy
+ * @package     Pixafy_ExampleFPC
+ * @copyright   Copyright (c) 2013 Pixafy (http://www.pixafy.com)
+ * @author      Thomas Lackemann
+ */
+-->
+<config>
+    <modules>
+        <Pixafy_ExampleFPC>
+            <version>1.0.0</version>
+        </Pixafy_ExampleFPC>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <examplefpc>
+                    <file>pixafy/examplefpc.xml</file>
+                </examplefpc>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <models>
+            <examplefpc>
+                <class>Pixafy_ExampleFPC_Model</class>
+            </examplefpc>
+        </models>
+        <blocks>
+            <examplefpc>
+                <class>Pixafy_ExampleFPC_Block</class>
+            </examplefpc>
+        </blocks>
+        <helpers>
+            <examplefpc>
+                <class>Pixafy_ExampleFPC_Helper</class>
+            </examplefpc>
+        </helpers>
+    </global>
+</config>

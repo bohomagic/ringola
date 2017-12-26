@@ -1,0 +1,10 @@
+<div class="page-title">
+    <h1><?php echo $this->__('עגלת הקניות שלך ריקה') ?></h1>
+</div>
+<div class="cart-empty">
+    <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+    <?php echo $this->getChildHtml('checkout_cart_empty_widget'); ?>
+    <p><?php echo $this->__('אין פריטים בעגלת הקניות') ?></p>
+    <p><?php echo $this->__('הקליקי <a href="%s">כאן</a> להמשך קניות', $this->getContinueShoppingUrl()) ?></p>
+    <?php echo $this->getChildHtml('shopping.cart.table.after'); ?>
+</div>

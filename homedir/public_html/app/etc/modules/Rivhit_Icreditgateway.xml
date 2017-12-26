@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rivhit_Icreditgateway>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Rivhit_Icreditgateway>
+    </modules>
+</config>

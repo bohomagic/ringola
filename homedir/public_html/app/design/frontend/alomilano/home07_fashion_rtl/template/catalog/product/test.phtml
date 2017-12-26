@@ -1,0 +1,39 @@
+<?php
+    require_once( 'app/Mage.php' );
+    umask(0);
+    Mage::app('default');
+    Mage::getSingleton('core/session', array('name' => 'frontend'));
+    header('Content-Type: application/json');
+    $_helper = Mage::helper('catalog/product_compare'); 
+    $count = $_helper->getItemCount();
+    echo '"compare":{';
+    echo '"summary":{"count": ';
+    echo $count;
+    echo ' },"items": [';
+    $total=0;
+    if ( $count > 0 ) {
+          try {          
+               $_productCollection = $_helper->getItemCollection();
+                        } catch (Exception $e) {
+                                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                        }
+
+          foreach ($_productCollection as $_index => $product) {
+                   if ($total <> 0) echo ',';
+                   $total += 1;
+                   echo '{ "name": "';
+                   $name = $product->getName();
+                   echo $name;
+                   echo '", "url": "';
+                   $url = $product->getProductUrl();
+                   echo $url;
+                   echo '", "remove_url": "';
+                   $remove = $_helper->getRemoveUrl($product);
+                   echo $remove;
+                   echo '"}';
+             } 
+    } 
+echo ']}';
+echo '}}';
+echo ')';
+?>

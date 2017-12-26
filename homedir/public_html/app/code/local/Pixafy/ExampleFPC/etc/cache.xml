@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Overcoming Magento's Full Page Cache
+ * http://www.pixafy.com/blog
+ *
+ * @category    Pixafy
+ * @package     Pixafy_ExampleFPC
+ * @copyright   Copyright (c) 2013 Pixafy (http://www.pixafy.com)
+ * @author      Thomas Lackemann
+ */
+-->
+<config>
+    <placeholders>
+        <pixafy_examplefpc>
+            <block>examplefpc/message</block>
+            <name>pixafy.examplefpc.message</name>
+            <placeholder>PIXAFY_EXAMPLEFPC_MESSAGE_CACHE</placeholder><!-- Can be any unique name -->
+            <container>Pixafy_ExampleFPC_Model_Container_Message</container>
+            <cache_life>5</cache_life><!-- See Pixafy_ExampleFPC_Model_Container_Message -->
+        </pixafy_examplefpc>
+    </placeholders>
+</config>

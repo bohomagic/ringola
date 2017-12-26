@@ -1,0 +1,93 @@
+<?php
+/**
+ * Magiccart 
+ * @category 	Magiccart 
+ * @copyright 	Copyright (c) 2014 Magiccart (http://www.magiccart.net/) 
+ * @license 	http://www.magiccart.net/license-agreement.html
+ * @Author: Magiccart<team.magiccart@gmail.com>
+ * @@Create Date: 2014-04-25 13:15:04
+ * @@Modify Date: 2015-07-22 18:50:35
+ * @@Function:
+ */
+?>
+
+<?php
+
+// drawMainHome
+$menu = $this->cfgExt->topmenu;
+if(!$menu['enabled']) return;
+$drawHomeMenu = '';
+$home = $menu['home'];
+if($home) $drawHomeMenu  = $this->drawHomeMenu();
+
+// drawMainMenu vs DrowMobileMenu
+$menuHtml = $this->drawMainMenu();
+$mobileMenu = $menuHtml['mobile'];
+$desktop 	= $menuHtml['desktop'];
+$ids  = explode(',', $menu['notIncludeNav']);
+foreach ($ids as $id) {
+	unset($desktop[$id]);
+}
+$drawMainMenu = $menu['mainCat'] ? implode("\n", $desktop) : '';
+
+// drawExtMenu ExtraMenu
+$drawExtraMenu = $menu['extraCat'] ? $this->drawExtraMenu() : '';
+
+?>
+<?php $sticker = $menu['sticker'] ? 'sticker' : ''; ?>
+<div class="magicmenu clearfix">
+	<ul class="nav-desktop <?php echo $sticker ?>">
+		<?php echo $drawHomeMenu ?>
+		<?php echo $drawMainMenu ?>
+		<?php echo $drawExtraMenu ?>
+	</ul>
+</div>
+<div class="nav-mobile">
+	<h3 class="mobi-title"><?php echo $this->__('קטגוריות')?></h3>
+	<ul>
+		<?php echo $mobileMenu ?>
+		<li class="level0">
+				<a href="<?php echo Mage::getBaseUrl() ?>ringsize-guide" class="level-top"><span>מדריך מידות</span></a>
+		</li>
+		<li class="level0">
+			<div class="cmenulink" style="padding-left: 10px;">				
+				<a href="<?php echo $this->getUrl('wishlist') ?>" class="fa fa-heart" ></a>
+				<a href="<?php echo Mage::getBaseUrl() ?>contacts/" class="fa fa-envelope"></a>
+				<a href="https://www.facebook.com/RingolaJewels/" target="_blank"  class="fa fa-facebook"></a>
+				<div class="header-setting">
+					<div class="settting-switcher header-search">
+						<div class="dropdown-toggle">
+							<div class="icon-setting"><i class="icon-magnifier icons"></i></div>
+						</div>
+						<div class="dispaly-seach dropdown-switcher">
+							<?php //echo $this->getChildHtml('topSearch') ?>
+			<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('catalogsearch/form.mini.phtml')->toHtml(); ?>
+						</div>
+					</div>
+				</div>
+						<div class="clearfix">
+				</div>
+			</div>
+		</li>
+		<li class="level0" id="newslettermenu">
+			<?php echo $this->getLayout()->createBlock('newsletter/subscribe')->setTemplate('newsletter/subscribe.phtml')->toHtml(); ?>
+		</li>
+	</ul>
+</div>
+<script>
+//if(jQuery('.meanmenu-reveal').length>0){
+	//jQuery('.meanmenu-reveal').before('<span class="menutitle">תפריט</span>');
+	//jQuery(".meanmenu-reveal").click(function(){
+   // jQuery("<span class='menutitle'>תפריט</span>").insertAfter(jQuery('.meanmenu-reveal'));
+	//});
+//}
+jQuery(document).ready(function() {
+	var el = document.createElement("span");
+	el.innerHTML = "Menu";
+	el.className = "menucustomtitle";
+	var div = document.getElementsByClassName("meanmenu-reveal")[0];
+//insertAfter(div, el);
+if(div){div.parentNode.insertBefore(el, div.nextSibling);
+}
+});
+</script>

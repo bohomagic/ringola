@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <all>
+                <title>Allow Everything</title>
+            </all>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <rivhit_invoice translate="title" module="rivhit_invoice">
+                                        <title>Rivhit Invoice</title>
+                                        <sort_order>999</sort_order>
+                                    </rivhit_invoice>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>

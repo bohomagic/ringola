@@ -1,0 +1,171 @@
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_product = $this->getProduct(); ?>
+<script type="text/javascript">
+    var optionsPrice = new Product.OptionsPrice(<?php echo $this->getJsonConfig() ?>);
+</script>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="wrap_quickview">
+    <div class="product-view product-quickview">
+    	<div class="product-essential">
+    		<form
+    			action="<?php  echo $this->getAddToCartUrl($_product)//echo $this->getSubmitUrl($_product) ?>"
+    			method="post" id="product_addtocart_form"
+    			<?php if($_product->getOptions()): ?> enctype="multipart/form-data"
+    			<?php endif; ?>>
+    			<div class="no-display">
+    				<input type="hidden" name="product"
+    					value="<?php echo $_product->getId() ?>" /> <input type="hidden"
+    					name="related_product" id="related-products-field" value="" />
+    			</div>
+				<div class="container container-quickview">
+				    <div class="row">
+						<div class="product-img-box col-lg-5 col-md-5 col-sm-5">
+							<?php echo $this->getChildHtml('media') ?>
+						</div>
+						<div class="product-shop col-lg-7 col-md-7 col-sm-7">
+							<div class="product-name">
+        						<h1><?php echo $_helper->productAttribute($_product, $_product->getName(), 'name') ?></h1>
+        					</div>
+        					<?php echo $this->getReviewsSummaryHtml($_product, false, true)?>
+        					<?php echo $this->getChildHtml('alert_urls') ?>
+        					<?php echo $this->getChildHtml('product_type_data') ?>
+        					<?php echo $this->getTierPriceHtml() ?>
+        					<?php echo $this->getChildHtml('extrahint') ?>
+
+                            <?php if ($_product->getDescription()):?>
+                                <div class="description">
+                                	<?php
+									$product_id = $_product->getId();
+									$product = Mage::getModel('catalog/product')->load($product_id);
+									$store = Mage::app()->getStore();
+									$store_id = Mage::app()->getStore()->getId();
+									$_resource = Mage::getSingleton('catalog/product')->getResource();
+									$attributes_array = array('ds_warranty','ds_1_line','ds_2_line','ds_3_line','ds_4_line','ds_5_line','ds_color','ds_metal','ds_material','ds_stone','ds_stone_color','ds_pendant','ds_theme','ds_sz_ring_size','ds_sz_face_size','ds_sz_size','ds_sz_length','ds_sz_wide','ds_sz_circum','ds_sz_pendent_size','ds_sz_bead_size','ds_sz_stone_size','sd_sz_hole_size','sku','ds_avoid','ds_spin_avoid');
+									$attributes_without_label_array = array('ds_warranty','ds_1_line','ds_2_line','ds_3_line','ds_4_line','ds_5_line','ds_avoid','ds_spin_avoid');
+
+									foreach ($attributes_array as $attribute) {
+										
+										$attr = $attribute;
+									    $attribute = $product->getResource()->getAttribute($attribute);
+										if($attribute){
+											$attribute_label = $attribute->getStoreLabel();
+											$attribute_value = $_resource->getAttributeRawValue($product_id,$attribute, $store);
+											$attribute_type  = $attribute->getFrontendInput();
+											if($attribute_value){
+												if (in_array($attr, $attributes_without_label_array)) {
+													if($attribute_type == 'select'){
+														$attribute_value = $product->getResource()->getAttribute($attribute)->getFrontend()->getValue($product);
+													}
+													echo '<p>'.$attribute_value.'</p>';
+												}else{
+													if($attribute_type == 'select'){
+														$attribute_value = $product->getResource()->getAttribute($attribute)->getFrontend()->getValue($product);
+													}
+													echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+												}
+											}
+										}
+									}
+									?>
+
+
+
+
+
+                                    <?php
+                                    /*
+                                    if($this->getConfig('desc_striptags')){
+                                        $short_desc = strip_tags($_product->getDescription(), '<p>');
+                                    }else{
+                                        $short_desc = $_product->getDescription();
+                                    }?>
+                                    <?php echo $this->helper('core/string')->truncate($short_desc,2000) 
+									*/
+                                    ?>
+                                </div>
+                            <?php endif;?>
+
+        					<?php if (!$this->hasOptions()):?>
+        						<div class="add-to-box">
+        							<?php if($_product->isSaleable()): ?>
+        								<?php echo $this->getChildHtml('addtocart') ?>
+        								<?php if( $this->helper('wishlist')->isAllow() || $_compareUrl=$this->helper('catalog/product_compare')->getAddUrl($_product)): ?>
+        								<?php endif; ?>
+        							<?php endif; ?>
+        							<?php //echo $this->getChildHtml('addto') ?>
+        						</div>
+        						<?php echo $this->getChildHtml('extra_buttons') ?>
+        					<?php elseif (!$_product->isSaleable()): ?>
+        						<div class="add-to-box">
+        							<?php //echo $this->getChildHtml('addto') ?>
+        						</div>
+        					<?php endif; ?>
+
+        					<?php echo $this->getChildHtml('other');?>
+
+        					<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+        						<?php echo $this->getChildChildHtml('container1', '', true, true) ?>
+        					<?php endif;?>
+        					<?php if ($_product->isSaleable() && $this->hasOptions()):?>
+        						<?php echo $this->getChildChildHtml('container2', '', true, true) ?>
+        					<?php endif;?>
+
+						</div>
+					</div>
+			</div>
+        </form>
+    	<script type="text/javascript">
+        //<![CDATA[
+        var productAddToCartForm = new VarienForm('product_addtocart_form');
+        productAddToCartForm.submit = function(button, url) {
+            if (this.validator.validate()) {
+                var form = this.form;
+                var oldUrl = form.action;
+
+                if (url) {
+                   form.action = url;
+                }
+                var e = null;
+                try {
+                    this.form.submit();
+                } catch (e) {
+                }
+                this.form.action = oldUrl;
+                if (e) {
+                    throw e;
+                }
+
+                if (button && button != 'undefined') {
+                    button.disabled = true;
+                }
+            }
+        }.bind(productAddToCartForm);
+
+            productAddToCartForm.submitLight = function(button, url){
+                if(this.validator) {
+                    var nv = Validation.methods;
+                    delete Validation.methods['required-entry'];
+                    delete Validation.methods['validate-one-required'];
+                    delete Validation.methods['validate-one-required-by-name'];
+                    // Remove custom datetime validators
+                    for (var methodName in Validation.methods) {
+                        if (methodName.match(/^validate-datetime-.*/i)) {
+                            delete Validation.methods[methodName];
+                        }
+                    }
+
+                    if (this.validator.validate()) {
+                        if (url) {
+                            this.form.action = url;
+                        }
+                        this.form.submit();
+                    }
+                    Object.extend(Validation.methods, nv);
+                }
+            }.bind(productAddToCartForm);
+        //]]>
+        </script>
+    </div>
+</div>
+</div>
+

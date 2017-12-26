@@ -1,0 +1,12 @@
+<?php
+
+?>
+<form name="mygatewayform" method="post" action="<?php echo Mage::getBaseUrl().'icreditgateway/payment/submit';?>">
+	<input type="hidden" name="orderid" value="<?php echo $orderId; ?>">
+    <input type="hidden" name="grandtotal" value="<?php echo $_order->getBaseGrandTotal(); ?>">
+    <input type="submit" value="submit">
+</form>
+<script type="text/javascript">
+document.mygatewayform.submit();
+</script>
+

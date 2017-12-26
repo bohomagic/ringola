@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Overcoming Magento's Full Page Cache
+ * http://www.pixafy.com/blog
+ *
+ * @category    Pixafy
+ * @package     Pixafy_ExampleFPC
+ * @copyright   Copyright (c) 2013 Pixafy (http://www.pixafy.com)
+ * @author      Thomas Lackemann
+ */
+-->
+<config>
+    <modules>
+        <Pixafy_ExampleFPC>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Pixafy_ExampleFPC>
+    </modules>
+</config>

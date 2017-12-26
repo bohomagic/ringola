@@ -1,0 +1,200 @@
+<?xml version="1.0"?>
+<config>
+  <sections>
+    <payment>
+      <groups>
+        <icreditgateway translate="label comment" module="paygate">
+          <label>iCredit Payment Gateway</label>
+          <frontend_type>text</frontend_type>
+          <sort_order>1000</sort_order>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <show_in_store>1</show_in_store>
+          <fields>
+            <active translate="label">
+              <label>Enabled</label>
+              <frontend_type>radios</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>0</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </active>
+             <message translate="label">
+              <label>Payment Method Description</label>
+              <frontend_type>textarea</frontend_type>
+              <sort_order>1</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </message>
+            <title translate="label">
+              <label>Title</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>2</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </title>
+            <test_mode translate="label">
+              <label>Test Mode</label>
+              <frontend_type>radios</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>3</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </test_mode>
+             <test_group_token translate="label">
+              <label>Test Group Token</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>4</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </test_group_token>
+            <prod_group_token translate="label">
+              <label>Prod Group Token</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>5</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </prod_group_token>
+            <max_payment translate="label">
+              <label>Max Payments</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>6</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </max_payment>
+            <credit_from_payment translate="label">
+              <label>Credit from Payment</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>7</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </credit_from_payment>
+            <window_type translate="label">
+              <label>Window Type</label>
+              <frontend_type>select</frontend_type>
+              <source_model>icreditgateway/system_config_source_windowtype</source_model>
+              <sort_order>8</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </window_type>
+            <height translate="label">
+              <label>iFrame/Popup Height</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>9</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </height>
+            <width translate="label">
+              <label>iFrame/Popup Width</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>10</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </width>
+            <hide_item_list translate="label">
+              <label>Hide Items List</label>
+              <frontend_type>radios</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>11</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </hide_item_list>
+            <create_token translate="label">
+              <label>Create Token</label>
+              <frontend_type>radios</frontend_type>
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>12</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </create_token>
+            <invoice_lang translate="label">
+              <label>Invoice Language</label>
+              <frontend_type>select</frontend_type>
+              <source_model>icreditgateway/system_config_source_invoicelang</source_model>
+              <sort_order>13</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </invoice_lang>
+             <exempt_vat translate="label">
+              <label>Exempt VAT</label>
+              <frontend_type>select</frontend_type>
+              <source_model>icreditgateway/system_config_source_exemptvat</source_model>
+              <sort_order>14</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </exempt_vat>
+            <redirect_url translate="label">
+              <label>Redirect URL</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>15</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </redirect_url>
+            <order_success_status translate="label">
+              <label>Success Order Status</label>
+              <frontend_type>select</frontend_type>
+              <source_model>icreditgateway/system_config_source_orderstatus</source_model>
+              <sort_order>16</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </order_success_status>
+            <order_failed_status translate="label">
+              <label>Failed Order Status</label>
+              <frontend_type>select</frontend_type>
+              <source_model>icreditgateway/system_config_source_orderstatus</source_model>
+              <sort_order>17</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </order_failed_status>
+           <!--  <ipn_url translate="label">
+              <label>IPN URL</label>
+              <frontend_type>text</frontend_type>
+              <sort_order>16</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>1</show_in_store>
+            </ipn_url> -->
+            <specificcountry translate="label">
+              <label>Countries Payment Applicable From</label>
+              <frontend_type>multiselect</frontend_type>
+              <sort_order>70</sort_order>
+              <source_model>adminhtml/system_config_source_country</source_model>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+              <depends>
+                <allowspecific>1</allowspecific>
+              </depends>
+            </specificcountry>
+            <sort_order translate="label">
+              <label>Sort Order</label>
+              <frontend_type>text</frontend_type>
+			        <sort_order>18</sort_order>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+              <show_in_store>0</show_in_store>
+            </sort_order>
+          </fields>
+        </icreditgateway>
+      </groups>
+    </payment>
+  </sections>
+</config>

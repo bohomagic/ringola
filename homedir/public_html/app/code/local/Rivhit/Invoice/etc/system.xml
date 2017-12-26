@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<config>
+	 <tabs>
+        <rivhit_invoice>
+            <label>Rivhit Invoice</label>
+            <sort_order>1000</sort_order>
+        </rivhit_invoice>
+    </tabs>
+    <sections>
+        <rivhit_invoice translate="label" module="rivhit_invoice">
+            <label>Rivhit Invoice Settings</label>
+            <tab>rivhit_invoice</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>400</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+                <groups>
+                    <general translate="label comment">
+                    <expanded>1</expanded>
+                    <label>General</label>
+                    <comment>General settings that are required to connect Rivhit.</comment>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>10</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                      <fields>
+			            <active translate="label">
+			              <label>Enabled</label>
+			              <frontend_type>radios</frontend_type>
+			              <source_model>adminhtml/system_config_source_yesno</source_model>
+			              <sort_order>0</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </active>
+			              <apitoken translate="label">
+			              <label>Api Token</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>1</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </apitoken>
+			            <doctype translate="label">
+			              <label>Document Type</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>3</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </doctype>
+			            <defaultcustomerid translate="label">
+			              <label>Default customer id</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>4</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </defaultcustomerid>
+			            <createcustomer translate="label">
+			              <label>Create Customer ?</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>adminhtml/system_config_source_yesno</source_model>
+			              <sort_order>5</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </createcustomer>
+			            <findbyemail translate="label">
+			              <label>Find By Email ?</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>adminhtml/system_config_source_yesno</source_model>
+			              <sort_order>6</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </findbyemail>
+			            <createitem translate="label">
+			              <label>Create Item ?</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>adminhtml/system_config_source_yesno</source_model>
+			              <sort_order>7</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </createitem>
+			            <sortcode translate="label">
+			              <label>Sort Code</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>8</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </sortcode>
+			            <examptsortcode translate="label">
+			              <label>Exampt sort code</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>9</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </examptsortcode>
+			            <sendemail translate="label">
+			              <label>Send Email ?</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>adminhtml/system_config_source_yesno</source_model>
+			              <sort_order>10</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </sendemail>
+			            <digitalsignaturepin translate="label">
+			              <label>Digital signature PIN</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>12</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </digitalsignaturepin>
+			             <paypalpaymentcode translate="label">
+			              <label>Paypal payment code</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>13</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </paypalpaymentcode>
+			             <creditcardpaymentcode translate="label">
+			              <label>Credit card payment code</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>14</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </creditcardpaymentcode>
+			             <cashpaymentcode translate="label">
+			              <label>Cash payment code</label>
+			              <frontend_type>text</frontend_type>
+			              <sort_order>15</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>1</show_in_store>
+			            </cashpaymentcode>
+			             <invoicelanguage translate="label">
+			              <label>Invoice Language</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>Rivhit_Invoice_Model_System_Config_Source_Invoicelang</source_model>
+			              <sort_order>16</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </invoicelanguage>
+			             <examptvat translate="label">
+			              <label>Exampt vat</label>
+			              <frontend_type>select</frontend_type>
+			              <source_model>Rivhit_Invoice_Model_System_Config_Source_Exemptvat</source_model>
+			              <sort_order>17</sort_order>
+			              <show_in_default>1</show_in_default>
+			              <show_in_website>1</show_in_website>
+			              <show_in_store>0</show_in_store>
+			            </examptvat>
+			        </fields>
+			      </general>
+                </groups>
+        </rivhit_invoice>
+    </sections>
+</config>

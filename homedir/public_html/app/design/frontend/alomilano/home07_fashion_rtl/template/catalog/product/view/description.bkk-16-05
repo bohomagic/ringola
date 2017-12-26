@@ -1,0 +1,225 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/**
+ * Product description template
+ *
+ * @see Mage_Catalog_Block_Product_View_Description
+ */
+?>
+<?php
+$product = $this->getProduct();
+$product_id = $product->getId();
+$product = Mage::getModel('catalog/product')->load($product_id);
+$store = Mage::app()->getStore();
+$store_id = Mage::app()->getStore()->getId();
+$_resource = Mage::getSingleton('catalog/product')->getResource();
+$attributes_array = array('ds_warranty','ds_1_line','ds_2_line','ds_3_line','ds_4_line','ds_5_line','ds_color','ds_metal','ds_stone','ds_pendant','ds_sz_face_size','ds_sz_size','ds_sz_lenght','ds_sz_wide','ds_sz_circum','ds_sz_pendent_size','ds_sz_bead_size','ds_sz_stone_size','sd_sz_hole_size','sku','ds_avoid','ds_spin_avoid');
+$attributes_without_label_array = array('ds_warranty','ds_1_line','ds_2_line','ds_3_line','ds_4_line','ds_5_line','ds_avoid','ds_spin_avoid');
+
+foreach ($attributes_array as $attribute) {
+	
+	$attr = $attribute;
+    $attribute = $product->getResource()->getAttribute($attribute);
+	if($attribute){
+		$attribute_label = $attribute->getStoreLabel();
+		$attribute_value = $_resource->getAttributeRawValue($product_id,$attribute, $store);
+		$attribute_type  = $attribute->getFrontendInput();
+		if($attribute_value){
+			if (in_array($attr, $attributes_without_label_array)) {
+				if($attribute_type == 'select'){
+					$attribute_value = $product->getResource()->getAttribute($attribute)->getFrontend()->getValue($product);
+				}
+				echo '<p>'.$attribute_value.'</p>';
+			}else{
+				if($attribute_type == 'select'){
+					$attribute_value = $product->getResource()->getAttribute($attribute)->getFrontend()->getValue($product);
+				}
+				echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+			}
+		}
+	}
+}
+
+/*
+$attribute = $product->getResource()->getAttribute('ds_3_line')
+$attribute_label = ->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_3_line', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_4_line')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_4_line', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_5_line')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_5_line', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_color')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_color', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_metal')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_metal', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_stone')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_stone', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_pendant')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_pendant', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_face_size')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_face_size', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_size')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_size', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_lenght')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_lenght', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_wide')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_wide', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_circum')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_circum', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_pendent_size')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_pendent_size', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+$attribute_label = $product->getResource()->getAttribute('ds_sz_stone_size')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_sz_stone_size', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('sd_sz_hole_size')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'sd_sz_hole_size', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('sku')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'sku', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_avoid')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_avoid', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+$attribute_label = $product->getResource()->getAttribute('ds_spin_avoid')->getStoreLabel();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_spin_avoid', $store);
+if($attribute_value){
+	echo '<p><b>'.$attribute_label.'</b>: '.$attribute_value.'</p>';
+}
+
+
+$attributeModel = Mage::getModel('eav/entity_attribute')->loadByCode('catalog_product','ds_warranty');
+$attribute_label = $attributeModel->getStoreLabel($store_id);
+$_resource = Mage::getSingleton('catalog/product')->getResource();
+$attribute_value = $_resource->getAttributeRawValue($product_id,'ds_warranty', Mage::app()->getStore());
+echo $attribute_label.': '.$optionValue.'<br/>';
+
+
+
+$optionValue = $_resource->getAttributeRawValue($product_id,'ds_1_line', Mage::app()->getStore());
+echo $optionValue.'<br/>';
+$optionValue = $_resource->getAttributeRawValue($product_id,'ds_2_line', Mage::app()->getStore());
+echo $optionValue.'<br/>';
+$optionValue = $_resource->getAttributeRawValue($product_id,'ds_3_line', Mage::app()->getStore());
+echo $optionValue.'<br/>';
+$optionValue = $_resource->getAttributeRawValue($product_id,'ds_4_line', Mage::app()->getStore());
+echo $optionValue.'<br/>';
+$optionValue = $_resource->getAttributeRawValue($product_id,'sku', Mage::app()->getStore());
+echo $optionValue.'<br/>';
+
+$array = array('ds_warranty','ds_1_line','ds_2_line','ds_3_line','ds_4_line','ds_5_line','ds_color','ds_metal','ds_stone','ds_pendant','ds_sz_face_size','ds_sz_size','ds_sz_lenght','ds_sz_wide','ds_sz_circum','ds_sz_pendent_size','ds_sz_bead_size','ds_sz_stone_size','sd_sz_hole_size','sku','ds_avoid','ds_spin_avoid');
+echo $this->getProduct()->getAttributeText('ds_warranty') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_1_line') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_2_line') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_3_line') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_4_line') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_5_line') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_color') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_metal') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_stone') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_pendant') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_face_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_lenght') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_wide') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_circum') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_pendent_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_bead_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_sz_stone_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('sd_sz_hole_size') .'<br/>';
+echo $this->getProduct()->getAttributeText('sku') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_avoid') .'<br/>';
+echo $this->getProduct()->getAttributeText('ds_spin_avoid') .'<br/>';
+*/
+/*
+ if ($_description): ?>
+    <h2><?php echo $this->__('Details') ?></h2>
+    <div class="std">
+        <?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_description, 'תיאור מוצר') ?>
+    </div>
+    <div class="sku_end_div" style="font-size: 14px;">
+     	<?php echo $this->helper('catalog/output')->productAttribute($this->getProduct(), $_sku, 'sku') ?><lable style="font-size: 14px; font-weight: bold;"> :מק"ט </lable>
+ 	</div>
+<?php endif; 
+
+*/
+?>

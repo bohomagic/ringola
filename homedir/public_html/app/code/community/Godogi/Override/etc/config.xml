@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Godogi_Override>
+            <version>1.0.0</version>
+        </Godogi_Override>
+    </modules>
+    <global>
+    	<blocks>
+		    <catalog><!-- alias of the block group you are rewriting -->
+		        <rewrite><!-- reserved tag: specify that you are rewriting something -->
+		             <product_list_related>Godogi_Override_Block_Product_List_Related</product_list_related> <!-- tag: the rest of the alias of the class you are rewriting. value: the name of your class that rewrites the core class -->
+		        </rewrite>
+		    </catalog>
+            <sales><!-- alias of the block group you are rewriting -->
+                <rewrite><!-- reserved tag: specify that you are rewriting something -->
+                     <order_totals>Godogi_Override_Block_Order_Totals</order_totals> <!-- tag: the rest of the alias of the class you are rewriting. value: the name of your class that rewrites the core class -->
+                </rewrite>
+            </sales>
+		</blocks>
+    </global>
+</config>

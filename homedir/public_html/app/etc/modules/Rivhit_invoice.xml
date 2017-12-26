@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Rivhit_Invoice>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Rivhit_Invoice>
+    </modules>
+</config>

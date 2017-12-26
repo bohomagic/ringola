@@ -1,0 +1,42 @@
+<?php $gift_wrap_checked_user=($_POST['giftwrap']); ?>
+<?php if ($this->getTotals()): ?>
+<tfoot class="test">
+	<?php $_colspan = $this->helper('tax')->displayCartBothPrices() ? 4 : 3; ?>
+    <div class="sub_total"><?php echo $this->renderTotals(null, $_colspan); ?></div>
+    
+<?php if ($gift_wrap_checked_user == 'Yes') : ?>
+
+    <td class="a-right" colspan="3">
+		<div><?php echo $this->__('Gift Wrap');?></div>
+    </td>
+     <td class="a-right last">
+	 	<div><?php echo $this->helper('checkout')->formatPrice($_SESSION['price_gift_warp']);?></div>
+      </td>
+     <tr>
+	      <?php 
+				$_totals = Mage::getSingleton('checkout/session')->getQuote()->getGrandTotal();
+				$grand_total_price_gift_wrap = ($_totals + ($_SESSION['price_gift_warp']));
+			?>
+       	<td class="a-right dhjffsdf" colspan="3">
+	     <div><strong>  <?php echo "Grand Total"; ?></strong></div>
+       	</td>
+       	<td class="a-right last">
+		<div><strong><?php echo $this->helper('checkout')->formatPrice($grand_total_price_gift_wrap); ?> </strong></div>
+        </td>	
+      </tr>
+    
+<?php else :?>
+    <div class="footer_grand_total"><?php echo $this->renderTotals('footer', $_colspan); ?></div>
+<?php endif;?>
+    <?php if ($this->needDisplayBaseGrandtotal()):?>
+    <tr>
+        <td class="a-right" colspan="<?php echo $_colspan; ?>">
+            <small><?php echo $this->helper('sales')->__('Your credit card will be charged for') ?></small>
+        </td>
+        <td class="a-right">
+            <small><?php echo $this->displayBaseGrandtotal() ?></small>
+        </td>
+    </tr>
+    <?php endif?>
+</tfoot>
+<?php endif; ?>

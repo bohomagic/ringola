@@ -1,0 +1,92 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magento.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magento.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2006-2016 X.commerce, Inc. and affiliates (http://www.magento.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+
+/* @var $this Mage_Wishlist_Block_Customer_Wishlist_Item_Column_Cart */
+/* @var Mage_Wishlist_Model_Item $item */
+$item = $this->getItem();
+$product = $item->getProduct();
+$options = $this->getChild('customer.wishlist.item.options')
+    ->setItem($item)
+    ->getConfiguredOptions();
+?>
+<div class="visible-md visible-lg">
+<div class="cart-cell">
+<?php echo $this->getPriceHtml($product, empty($options));?>
+<div class="add-to-cart-alt">
+<?php /* if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+    <input type="text" class="input-text qty validate-not-negative-number" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
+<?php endif; */ ?>
+<?php if ($product->isSaleable()): ?>
+    <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Add to Cart')) ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="button btn-cart"><span><span><?php echo $this->__('הוסיפי לסל הקניות') ?></span></span></button>
+<?php else: ?>
+    <?php if ($product->getIsSalable()): ?>
+        <p class="availability in-stock"><span><?php echo $this->__('קיים במלאי') ?></span></p>
+    <?php else: ?>
+        <p class="availability out-of-stock"><span><?php echo $this->__('אזל מהמלאי') ?></span></p>
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+<?php foreach($this->getSortedChildren() as $childName):?>
+    <?php echo $this->getChildHtml($childName, false);?>
+<?php endforeach;?>
+<?php if ($product->isVisibleInSiteVisibility()): ?>
+    <p><a class="link-edit" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php /* echo $this->__('עריכה') */ ?></a></p>
+<?php endif ?>
+</div>
+</div>
+
+<div class="visible-sm visible-xs">
+<div class="cart-cell">
+<?php if ($product->isVisibleInSiteVisibility()): ?>
+    <p style="margin-bottom: 0px;"><a class="link-edit" href="<?php echo $this->getItemConfigureUrl($item) ?>"><?php echo $this->__('עריכה') ?></a></p>
+<?php endif ?>
+<div class="add-to-cart-alt">
+<?php if ($product->isSaleable()): ?>
+    <button type="button" title="<?php echo Mage::helper('core')->quoteEscape($this->__('Move to Cart')) ?>" onclick="addWItemToCart(<?php echo $item->getId()?>);" class="movetocart"><span><span><?php echo $this->__('שלח לסל קניות') ?></span></span></button>
+<?php else: ?>
+    <?php if ($product->getIsSalable()): ?>
+        <p class="availability in-stock"><span><?php echo $this->__('קיים במלאי') ?></span></p>
+    <?php else: ?>
+        <p class="availability out-of-stock"><span><?php echo $this->__('אזל מהמלאי') ?></span></p>
+    <?php endif; ?>
+<?php endif; ?>
+</div>
+<?php if ($item->canHaveQty() && $item->getProduct()->isVisibleInSiteVisibility()): ?>
+	<div class="custom-qty-wrap">
+        <span style="float: left; line-height: 30px; margin-right: 5px;"><?php echo $this->__('Quantity') ?></span>
+		<div class="custom-qty clearfix">
+			<a class="alo_qty alo_qty_dec" href="javascript:void(0)"><i class="fa fa-minus-square-o"></i></a>
+			<input type="text" class="input-text qty validate-not-negative-number" name="qty[<?php echo $item->getId() ?>]" value="<?php echo $this->getAddToCartQty($item) * 1 ?>" />
+			<a class="alo_qty alo_qty_inc" href="javascript:void(0)"><i class="fa fa-plus-square-o"></i></a>
+        </div>
+	</div>
+<?php endif; ?>
+<?php foreach($this->getSortedChildren() as $childName):?>
+    <?php echo $this->getChildHtml($childName, false);?>
+<?php endforeach;?>
+<?php echo $this->getPriceHtml($product, empty($options));?>
+</div>
+</div>
