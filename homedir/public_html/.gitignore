@@ -1,0 +1,12 @@
+downloader/
+errors/
+favicon.ico
+media/downloadable/
+media/import/
+media/catalog
+nbproject/
+pear/
+php.ini.sample
+pkginfo/
+var/
+pear
